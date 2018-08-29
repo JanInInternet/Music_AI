@@ -54,19 +54,17 @@ model.add(Conv1D(32, (5)))
 model.add(Activation('relu'))
 model.add(MaxPooling1D(pool_size=(2)))
 
-model.add(Reshape((-1, 2)))
-
 #model.add(Flatten())
 model.add(Dense(1))
 model.add(Activation('relu'))
 
 model.add(Dense(1))
-model.add(Activation('softmax', input_shape=(4, 4)))
+model.add(Activation('softmax'))
 
 
 tensorboard = TensorBoard(log_dir="logs.test/{}".format(NAME), histogram_freq=0, write_graph=False, write_grads=False, write_images=False)
 
-model.compile(loss='sparse_categorical_crossentropy',
+model.compile(loss='categorical_crossentropy',
               optimizer='adam',
               metrics=['accuracy'],
               )
